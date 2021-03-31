@@ -1,0 +1,6 @@
+
+# Remover command docker-compose.yml line 6
+#     command: --providers.docker
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"

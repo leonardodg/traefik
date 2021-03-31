@@ -1,6 +1,4 @@
 # traefik
-
-
 Projeto teste para proxy reverse Traefik
 
 ## Requisitos
@@ -8,7 +6,9 @@ Projeto teste para proxy reverse Traefik
 - Docker-compose
 - Git
 
-
 ## Curso Traefik 
 
 -> https://codigofacilito.com/cursos/traefik
+
+## Clone Project 
+$ git clone git@github.com:leonardodg/traefik.git
