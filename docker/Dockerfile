@@ -4,8 +4,9 @@ ENV PORT=8080
 
 WORKDIR /app
 
-COPY . .
+COPY ./html .
+COPY ./scripts ./scripts
 
 EXPOSE ${PORT}
 
-ENTRYPOINT ["sh", "docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "./scripts/docker-entrypoint.sh"]

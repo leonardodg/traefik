@@ -23,7 +23,9 @@ services:
       - "traefik.http.routers.nginx.tls=true"
 
   app:
-    image: app
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
     container_name: app
     labels: 
       - "traefik.enable=true"

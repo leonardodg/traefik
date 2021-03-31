@@ -22,12 +22,6 @@ $ git clone git@github.com:leonardodg/traefik.git
 $ docker-compose up -d
 ```
 
-> Build imagem Dockerfile PHP:7.4
-  "-t" TAG app  AND "." path folder ./docker
-```console
-$ docker build -t app . 
-```
-
 ### Config
 
 > Add Hosts file windows - After GET IP - Sample IP 127.0.0.1 AND HOST`s nginx.app.test,apache.app.test
@@ -41,8 +35,8 @@ $ echo. && echo 127.0.0.1 apache.app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
 
 [Dashboard] -> http://app.test:8080/dashboard/#/ \
 [API] - > http://app.test:8080/api/rawdata \
-[Nginx] -> http://nginx.app.test/ \
-[Apache] -> http://apache.app.test/ \
+[Nginx] -> https://nginx.app.test/ \
+[Apache] -> https://apache.app.test/ \
 
 ### Mkcert
 
@@ -55,7 +49,7 @@ $ mkcert -install
 
 > Generate certificate for domain "docker.localhost", "domain.local" and their sub-domains
 ```console
-$ mkcert -cert-file certs/local-cert.pem -key-file certs/local-key.pem  app.test "*.app.test" apache.app.test nginx.app.test localhost 127.0.0.1 ::1
+$ mkcert -cert-file certs/app.test.pem -key-file certs/app.test-key.pem  app.test "*.app.test" apache.app.test nginx.app.test localhost 127.0.0.1 ::1
 ```
 
 # License
