@@ -13,3 +13,9 @@ services:
     image: nginx
     labels: 
       - "traefik.http.routers.nginx.rule=Host(`nginx.app.test`)"
+
+  app:
+    image: app
+    container_name: app
+    labels: 
+      - "traefik.http.routers.app.rule=Host(`apache.app.test`)"
