@@ -5,17 +5,21 @@ services:
     image: traefik
     ports: 
       - "80:80"
+      - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./traefik.yml:/traefik.yml
+      - ./traefik.log:/traefik.log
 
   nginx:
     image: nginx
     labels: 
+      - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=Host(`nginx.app.test`)"
 
   app:
     image: app
     container_name: app
     labels: 
+      - "traefik.enable=true"
       - "traefik.http.routers.app.rule=Host(`apache.app.test`)"

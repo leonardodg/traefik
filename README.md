@@ -32,6 +32,14 @@ $ docker build -t app .
 
 > Add Hosts file windows - After GET IP - Sample IP 127.0.0.1 AND HOST`s nginx.app.test,apache.app.test
 ```console
+$ echo. && echo 127.0.0.1 app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
 $ echo. && echo 127.0.0.1 nginx.app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
 $ echo. && echo 127.0.0.1 apache.app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
 ```
+
+### Link's Traefik
+
+[Dashboard] -> http://app.test:8080/dashboard/#/ \
+[API] - > http://app.test:8080/api/rawdata \
+[Nginx] -> http://nginx.app.test/ \
+[Apache] -> http://apache.app.test/ \
