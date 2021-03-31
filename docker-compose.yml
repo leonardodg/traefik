@@ -1,21 +1,26 @@
 version: "3.7"
 
-services: 
+services:
   proxy:
     image: traefik
+    container_name: traefik_proxy
     ports: 
       - "80:80"
       - "8080:8080"
+      - "443:443"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./traefik.yml:/traefik.yml
-      - ./traefik.log:/traefik.log
+      - ./config/traefik.yml:/traefik.yml
+      - ./log/traefik.log:/traefik.log
+      - ./certs:/etc/certs:ro
 
   nginx:
     image: nginx
+    container_name: nginx
     labels: 
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.rule=Host(`nginx.app.test`)"
+      - "traefik.http.routers.nginx.tls=true"
 
   app:
     image: app
@@ -23,3 +28,4 @@ services:
     labels: 
       - "traefik.enable=true"
       - "traefik.http.routers.app.rule=Host(`apache.app.test`)"
+      - "traefik.http.routers.app.tls=true"

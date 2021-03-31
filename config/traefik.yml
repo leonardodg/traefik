@@ -1,0 +1,49 @@
+entryPoints:
+  http:
+    address: ":80"
+    http:
+      redirections:
+        entryPoint:
+          to: https
+          scheme: https
+  https:
+    address: ":443"
+
+http:
+  routers:
+    traefik_proxy:
+      rule: "Host(`app.test`)"
+      service: "api@internal"
+      tls:
+        domains:
+          - main: "app.test"
+            sans:
+              - "*.app.test"
+          - main: "app.test"
+            sans:
+              - "*.app.test"
+
+tls:
+  certificates:
+    - certFile: "/etc/certs/app.test.pem"
+      keyFile: "/etc/certs/app.test-key.pem"
+
+api:
+  dashboard: true
+  insecure: true
+
+# Remover command docker-compose.yml line 6
+#     command: --providers.docker
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    watch: true
+    # Ocultar service
+    # Para exibir in labels - "traefik.enable=true"
+    exposedByDefault: false
+
+# Writing Logs to a File, in JSON
+log:
+  filePath: "/log/traefik.log"
+  level: INFO
+  format: common # JSON
