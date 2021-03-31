@@ -44,6 +44,6 @@ providers:
 
 # Writing Logs to a File, in JSON
 log:
-  filePath: "/log/traefik.log"
+  filePath: "./traefik.log"
   level: INFO
   format: common # JSON

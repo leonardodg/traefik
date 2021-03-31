@@ -1,0 +1,18 @@
+version: "3.7"
+
+services:
+  app:
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile
+    container_name: app
+    networks:
+      - traefik_proxy
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.app.rule=Host(`apache.app.test`)"
+      - "traefik.http.routers.app.tls=true"
+
+networks:
+  traefik_proxy:
+    external: true

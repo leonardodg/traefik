@@ -15,13 +15,6 @@ Projeto teste para proxy reverse Traefik
 $ git clone git@github.com:leonardodg/traefik.git
 ```
 
-### Comandos
-
-> Run Traefik
-```console
-$ docker-compose up -d
-```
-
 ### Config
 
 > Add Hosts file windows - After GET IP - Sample IP 127.0.0.1 AND HOST`s nginx.app.test,apache.app.test
@@ -29,6 +22,18 @@ $ docker-compose up -d
 $ echo. && echo 127.0.0.1 app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
 $ echo. && echo 127.0.0.1 nginx.app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
 $ echo. && echo 127.0.0.1 apache.app.test >> %WINDIR%\System32\Drivers\Etc\Hosts
+```
+
+> Create networks that will be used by Traefik:
+```console
+$ docker network create traefik_proxy
+```
+
+> Run Traefik
+```console
+$ docker-compose up -d
+$ docker-compose -f ./docker/nginx.yml up -d
+$ docker-compose -f ./docker/apache.yml up -d
 ```
 
 ### Link's Traefik

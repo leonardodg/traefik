@@ -7,27 +7,15 @@ services:
     ports: 
       - "80:80"
       - "8080:8080"
-      - "443:443"
+      - "443:443" 
+    networks:
+      - traefik_proxy
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./config/traefik.yml:/traefik.yml
       - ./log/traefik.log:/traefik.log
       - ./certs:/etc/certs:ro
-
-  nginx:
-    image: nginx
-    container_name: nginx
-    labels: 
-      - "traefik.enable=true"
-      - "traefik.http.routers.nginx.rule=Host(`nginx.app.test`)"
-      - "traefik.http.routers.nginx.tls=true"
-
-  app:
-    build:
-      context: ./
-      dockerfile: ./docker/Dockerfile
-    container_name: app
-    labels: 
-      - "traefik.enable=true"
-      - "traefik.http.routers.app.rule=Host(`apache.app.test`)"
-      - "traefik.http.routers.app.tls=true"
+      
+networks:
+  traefik_proxy:
+    external: true
